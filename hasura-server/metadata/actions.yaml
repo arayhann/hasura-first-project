@@ -1,0 +1,35 @@
+actions:
+- name: create_user
+  definition:
+    kind: synchronous
+    handler: '{{ACTION_BASE_URL}}/createUser'
+  permissions:
+  - role: anonymous
+- name: login
+  definition:
+    kind: synchronous
+    handler: '{{ACTION_BASE_URL}}/login'
+  permissions:
+  - role: anonymous
+- name: user_profile
+  definition:
+    kind: ""
+    handler: '{{ACTION_BASE_URL}}/getProfile'
+custom_types:
+  enums: []
+  input_objects:
+  - name: SignupCredential
+  - name: Credentials
+  objects:
+  - name: User
+    relationships:
+    - remote_table:
+        schema: public
+        name: users_data
+      name: users_data
+      source: default
+      type: object
+      field_mapping:
+        id: user_id
+  - name: LoginObject
+  scalars: []
